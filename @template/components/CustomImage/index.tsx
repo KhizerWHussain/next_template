@@ -1,9 +1,10 @@
+"use client";
 import Image from "next/image";
 import { ForwardedRef } from "react";
 
 interface customImageProps {
-  image: any;
-  alt: string;
+  image: any | undefined | string;
+  alt?: string;
   loadingEase?: "lazy" | "eager";
   width?: number;
   height?: number;
@@ -57,8 +58,8 @@ export default function CustomImage({
   return (
     <figure>
       <Image
-        src={image}
-        alt={alt}
+        src={image || ""}
+        alt={alt || "Image"}
         unoptimized={optimizeImage}
         priority={havePriority && loadingEase === "eager" ? true : false}
         suppressContentEditableWarning={true}
