@@ -3,13 +3,17 @@ import React, { useState } from "react";
 import NextNavbar from "../../@template/components/Navbar";
 import NextCard from "../../@template/components/NextCard";
 import NextDialog from "../../@template/components/NextDialog";
+import NextConfirmDialog from "../../@template/components/NextConfirm";
+import ContainerGrid from "../../@template/components/Grid";
+import ContentGrid from "../../@template/components/Grid/ContentGrid";
+import TextField from "../../@template/components/FormInput/TextField";
 
 const Base = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <NextNavbar />
-      <div className="flex w-80 max-w-80 h-full justify-center items-center">
+      <NextNavbar headerText="Portfolio" />
+      {/* <div className="flex w-80 max-w-80 h-full justify-center items-center">
         <NextCard
           title="Stories"
           actionComponent={<p>hello</p>}
@@ -18,11 +22,11 @@ const Base = () => {
         >
           <p>this is my nextCard</p>
         </NextCard>
-      </div>
+      </div> */}
 
-      <button onClick={() => setOpen(true)}>open Model</button>
+      {/* <button onClick={() => setOpen(true)}>open Model</button> */}
 
-      <NextDialog
+      {/* <NextDialog
         open={open}
         onClose={() => setOpen(false)}
         fullHeight={false}
@@ -33,7 +37,28 @@ const Base = () => {
         <div>
           <h1>dialog box</h1>
         </div>
-      </NextDialog>
+      </NextDialog> */}
+
+      {/* <NextConfirmDialog
+        state={[open, setOpen]}
+        title={"Delete User"}
+        text={"are you sure want to delete this user"}
+        onConfirm={() => setOpen(false)}
+      /> */}
+
+      {/* <ContainerGrid spacing={4}>
+        <ContentGrid md={8} lg={8}>
+          <NextCard>
+            <p>asfasfs</p>
+          </NextCard>
+        </ContentGrid>
+        <ContentGrid md={4} lg={4}>
+          <NextCard>
+            <p>asfasfasd</p>
+          </NextCard>
+        </ContentGrid>
+      </ContainerGrid> */}
+      <TextField name="name" label="Name" fullWidth={true} />
     </>
   );
 };

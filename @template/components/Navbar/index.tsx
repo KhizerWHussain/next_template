@@ -27,8 +27,8 @@ const NextNavbar = ({
   transparent,
   bgColor,
   disabled,
-  excludeList = true,
-  excludeIcon,
+  excludeList = false,
+  excludeIcon = false,
   navbarStyles,
   sticky,
   useReactScroll = false,
@@ -40,6 +40,9 @@ const NextNavbar = ({
   useSearchIcon,
   IconNavigateTo,
   useResponsive = true,
+  useProfile = true,
+  useNotification = false,
+  useSetting = false,
 }: navbarProps) => {
   return (
     <>
@@ -113,7 +116,7 @@ const NextNavbar = ({
 
           {useSearch ? (
             <div
-              className={`ml-6 w-full ${
+              className={`ml-6 w-full min-w-32 ${
                 useResponsive ? "hidden md:block" : ""
               }`}
             >
@@ -126,44 +129,46 @@ const NextNavbar = ({
             </div>
           ) : null}
 
-          <div
-            className={`ml-6 w-full flex gap-4 h-full ${
-              useResponsive ? "hidden md:flex" : ""
-            }`}
-          >
-            <CustomImage
-              image={""}
-              alt="Profile"
-              className="outline-none rounded-full border border-gray-400 p-2"
-              optimizeImage={false}
-              blurDataURL=""
-              fetchPriority="auto"
-              havePriority={false}
-              imageQuality={100}
-              loadingEase="lazy"
-            />
-            <CustomImage
-              image={""}
-              alt="Profile"
-              className="outline-none rounded-full border border-gray-400 p-2"
-              optimizeImage={false}
-              blurDataURL=""
-              fetchPriority="auto"
-              havePriority={false}
-              imageQuality={100}
-              loadingEase="lazy"
-            />
-            <CustomImage
-              image={""}
-              alt="Profile"
-              className="outline-none rounded-full border border-gray-400 p-2"
-              optimizeImage={false}
-              blurDataURL=""
-              fetchPriority="auto"
-              havePriority={false}
-              imageQuality={100}
-              loadingEase="lazy"
-            />
+          <div className={`ml-6 w-full gap-4 h-full hidden md:flex lg:flex}`}>
+            {useProfile ? (
+              <CustomImage
+                // image={""}
+                alt="Profile"
+                className="outline-none h-12 max-w-12 min-w-12 rounded-full border border-gray-400"
+                optimizeImage={false}
+                blurDataURL=""
+                fetchPriority="auto"
+                havePriority={false}
+                imageQuality={100}
+                loadingEase="lazy"
+              />
+            ) : null}
+            {useNotification ? (
+              <CustomImage
+                // image={""}
+                alt="Notification"
+                className="outline-none h-12 max-w-12 min-w-12 rounded-full border border-gray-400"
+                optimizeImage={false}
+                blurDataURL=""
+                fetchPriority="auto"
+                havePriority={false}
+                imageQuality={100}
+                loadingEase="lazy"
+              />
+            ) : null}
+            {useSetting ? (
+              <CustomImage
+                // image={""}
+                alt="Settings"
+                className="outline-none h-12 max-w-12 min-w-12 rounded-full border border-gray-400"
+                optimizeImage={false}
+                blurDataURL=""
+                fetchPriority="auto"
+                havePriority={false}
+                imageQuality={100}
+                loadingEase="lazy"
+              />
+            ) : null}
           </div>
         </div>
       </nav>
@@ -190,6 +195,9 @@ interface navbarProps {
   onSearchChange?: (x: any) => void;
   IconNavigateTo?: string;
   useResponsive?: boolean;
+  useProfile?: boolean;
+  useNotification?: boolean;
+  useSetting?: boolean;
 }
 
 const SearchInput = ({
@@ -220,9 +228,9 @@ const SearchInput = ({
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
             d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
           />
         </svg>

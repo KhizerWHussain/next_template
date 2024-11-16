@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 import { ForwardedRef } from "react";
+import ReplaceableImage from "../../assets/images/A1.jpg";
 
 interface customImageProps {
-  image: any | undefined | string;
+  image?: any | undefined | string;
   alt?: string;
   loadingEase?: "lazy" | "eager";
   width?: number;
@@ -27,6 +28,7 @@ interface customImageProps {
   role?: string;
   dataAttributes?: { [key: string]: string };
   ref?: ForwardedRef<HTMLImageElement>;
+  captionStyle?: string;
 }
 
 export default function CustomImage({
@@ -38,7 +40,7 @@ export default function CustomImage({
   className = "", // optional className for styling
   havePriority = false,
   styles,
-  fetchPriority,
+  fetchPriority = "low",
   imageLoader,
   imageFill,
   imageQuality,
@@ -54,11 +56,12 @@ export default function CustomImage({
   role,
   dataAttributes = {},
   ref,
+  captionStyle,
 }: customImageProps) {
   return (
     <figure>
       <Image
-        src={image || ""}
+        src={image || ReplaceableImage}
         alt={alt || "Image"}
         unoptimized={optimizeImage}
         priority={havePriority && loadingEase === "eager" ? true : false}
@@ -79,7 +82,7 @@ export default function CustomImage({
         quality={imageQuality || undefined}
         onClick={ClickFunction}
         title={alt || title}
-        blurDataURL={blurDataURL || undefined}
+        blurDataURL={blurDataURL || ReplaceableImage.blurDataURL}
         sizes={sizes}
         hidden={false}
         aria-label={alt}
@@ -90,7 +93,9 @@ export default function CustomImage({
         ref={ref}
         {...dataAttributes}
       />
-      {caption ? <figcaption>{caption}</figcaption> : null}
+      {caption ? (
+        <figcaption className={captionStyle}>{caption}</figcaption>
+      ) : null}
     </figure>
   );
 }
