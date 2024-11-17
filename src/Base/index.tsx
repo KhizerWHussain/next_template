@@ -11,8 +11,8 @@ import TextField from "../../@template/components/FormInput/TextField";
 const Base = () => {
   const [open, setOpen] = useState(false);
   return (
-    <>
-      <NextNavbar headerText="Portfolio" />
+    <div>
+      {/* <NextNavbar headerText="Portfolio" /> */}
       {/* <div className="flex w-80 max-w-80 h-full justify-center items-center">
         <NextCard
           title="Stories"
@@ -58,8 +58,8 @@ const Base = () => {
           </NextCard>
         </ContentGrid>
       </ContainerGrid> */}
-      <TextField name="name" label="Name" fullWidth={true} />
-    </>
+      <TextField name="name" type="password" placeHolder="enter name" />
+    </div>
   );
 };
 
